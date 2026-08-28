@@ -1,0 +1,16 @@
+components/
+├── Layout.tsx
+├── Header.tsx
+├── Footer.tsx
+├── NavLink.tsx
+├── SearchBar.tsx
+├── QuickTipsCarousel.tsx
+├── FeaturedThreat.tsx
+├── AudienceShortcuts.tsx
+├── NewsAlertList.tsx
+├── ResourceCard.tsx
+├── CyberChampionsSection.tsx
+├── EventsPreview.tsx
+├── CommunityStats.tsx
+└── forms/
+    └── NewsletterSignup.tsx
