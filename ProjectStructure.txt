@@ -1,0 +1,100 @@
+cybersecurity-awareness/
+├── app/
+│   ├── about/
+│   │   ├── mission-vision/page.tsx
+│   │   ├── team/page.tsx
+│   │   └── partners/page.tsx
+│   ├── cyber-threats/
+│   │   ├── page.tsx
+│   │   ├── phishing-scams/page.tsx
+│   │   ├── social-engineering/page.tsx
+│   │   ├── mobile-money-fraud/page.tsx
+│   │   ├── ransomware/page.tsx
+│   │   └── data-breaches/page.tsx
+│   ├── stay-safe/
+│   │   ├── page.tsx
+│   │   ├── passwords-mfa/page.tsx
+│   │   ├── email-safety/page.tsx
+│   │   ├── social-media-privacy/page.tsx
+│   │   ├── device-security/page.tsx
+│   │   └── online-payments/page.tsx
+│   ├── for-schools/
+│   │   ├── page.tsx
+│   │   ├── students/page.tsx
+│   │   ├── teachers/page.tsx
+│   │   └── parents/page.tsx
+│   ├── for-smes/
+│   │   ├── page.tsx
+│   │   ├── cyber-hygiene/page.tsx
+│   │   ├── email-data-security/page.tsx
+│   │   ├── backups-ransomware/page.tsx
+│   │   └── odpc-compliance/page.tsx
+│   ├── for-faith-organizations/
+│   │   ├── page.tsx
+│   │   ├── communication/page.tsx
+│   │   ├── data-protection/page.tsx
+│   │   └── youth/page.tsx
+│   ├── resources/
+│   │   ├── page.tsx
+│   │   ├── guides/page.tsx
+│   │   ├── posters/page.tsx
+│   │   ├── videos/page.tsx
+│   │   └── tools/page.tsx
+│   ├── report/
+│   │   ├── page.tsx
+│   │   ├── recognize/page.tsx
+│   │   ├── channels/page.tsx
+│   │   └── evidence/page.tsx
+│   ├── news/
+│   │   ├── page.tsx
+│   │   ├── scams/page.tsx
+│   │   ├── fake-websites-sms/page.tsx
+│   │   └── data-breaches/page.tsx
+│   ├── community/
+│   │   ├── page.tsx
+│   │   ├── cyber-champions/page.tsx
+│   │   ├── events/page.tsx
+│   │   └── volunteer/page.tsx
+│   ├── contact/page.tsx
+│   ├── privacy/page.tsx
+│   ├── disclaimer/page.tsx
+│   ├── layout.tsx
+│   ├── page.tsx (home)
+│   └── globals.css
+├── components/
+│   ├── Alert.tsx
+│   ├── Breadcrumbs.tsx
+│   ├── Card.tsx
+│   ├── Footer.tsx
+│   ├── Header.tsx
+│   ├── Layout.tsx
+│   ├── NavLink.tsx
+│   ├── PageHeader.tsx
+│   ├── Quiz.tsx
+│   ├── SearchBar.tsx
+│   ├── Section.tsx
+│   └── forms/
+│       ├── ContactForm.tsx
+│       ├── NewsletterSignup.tsx
+│       └── VolunteerForm.tsx
+├── data/
+│   ├── events.ts
+│   ├── news.ts
+│   ├── partners.ts
+│   ├── quizQuestions.ts
+│   ├── resources.ts
+│   ├── team.ts
+│   ├── threats.ts
+│   └── ...
+├── lib/
+│   ├── search.ts
+│   └── types.ts
+├── public/
+│   ├── images/ (placeholder images)
+│   └── ...
+├── package.json
+├── tsconfig.json
+├── next.config.js
+├── tailwind.config.js
+├── postcss.config.js
+└── README.md
