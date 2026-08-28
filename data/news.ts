@@ -1,1 +1,1 @@
-export const newsData = [];
+export const newsArticles = [];

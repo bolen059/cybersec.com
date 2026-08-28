@@ -1,1 +1,1 @@
-export const resourcesData = [];
+export const resources = [];

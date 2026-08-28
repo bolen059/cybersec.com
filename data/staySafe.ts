@@ -1,1 +1,1 @@
-export const staySafeData = [];
+export const staySafe = [];
