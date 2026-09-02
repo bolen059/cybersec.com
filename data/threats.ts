@@ -1,30 +1,234 @@
-export interface Threat {
-  slug: string;
+export interface ThreatProfile {
   title: string;
-  icon: string;
+  slug: string;
+  category: string;
+  severity: 'High' | 'Critical' | 'Medium' | 'Low';
   summary: string;
-  whatIs: string;
-  howAttacksWork: string;
-  warningSigns: string[];
-  examples: string[];
-  preventionTips: string[];
-  ifAffected: string;
-  relatedResources: string[];
+  description: string;
+  technicalMechanics: string[];
+  indicators: string[];
+  mitigation: string[];
+  response: string[];
+  odpcCompliance: string;
+  relatedGuides: string[];
+  reportingRoutes: string[];
+  [key: string]: any;
 }
 
-export const threats: Threat[] = [
+export const threats: ThreatProfile[] = [
   {
-    slug: '/cyber-threats/phishing-scams',
     title: 'Phishing & Scams',
-    icon: '🎣',
-    summary: 'Deceptive attempts to steal personal information.',
-    whatIs: 'Phishing is a type of cyberattack where attackers impersonate legitimate organizations...',
-    howAttacksWork: 'Attackers send emails, SMS, or social media messages that appear to come from trusted sources...',
-    warningSigns: ['Urgent or threatening language', 'Suspicious sender address', 'Requests for personal information', 'Spelling and grammar errors'],
-    examples: ['Fake M-Pesa promotion messages', 'Emails claiming to be from your bank asking for login details'],
-    preventionTips: ['Verify the sender', 'Do not click on suspicious links', 'Use anti-phishing toolbars', 'Enable two-factor authentication'],
-    ifAffected: 'If you suspect you have fallen victim to phishing, change your passwords immediately, contact your bank, and report the incident to the relevant authorities.',
-    relatedResources: ['/report/recognize', '/stay-safe/email-safety'],
+    slug: 'phishing-scams',
+    category: 'Phishing & Scams',
+    severity: 'High',
+    summary: 'Deceptive emails, SMS, or websites impersonating trusted entities to steal credentials, financial information, or install malware.',
+    description: 'Phishing remains the most prevalent cyber threat in Kenya, exploiting human trust and urgency. Attackers pose as banks, mobile network operators, government agencies, or popular online services to trick victims into revealing passwords, PINs, OTPs, or personal data. Variants include spear phishing (targeted), smishing (SMS), vishing (voice calls), and pharming (DNS redirection to fake sites). The stolen information is used for fraud, identity theft, or as an entry point for larger attacks.',
+    technicalMechanics: [
+      'Spoofed sender addresses or caller IDs mimicking legitimate organizations.',
+      'Fake login pages hosted on look-alike domains (e.g., safaricom.co.ke vs safaric0m.co.ke).',
+      'URL obfuscation using shorteners, punycode, or subdomains (e.g., paypal.com.security-check.tk).',
+      'Malicious attachments (PDF, DOCX, XLSX) with embedded macros or exploits.',
+      'Social engineering triggers: urgent account suspension, prize winnings, or tax refunds.',
+      'Credential harvesting via fake Google Forms or cloned bank portals.',
+    ],
+    indicators: [
+      'Unexpected messages requesting urgent action or personal information.',
+      'Email addresses with misspelled domains or free email providers (e.g., @gmail.com instead of @company.com).',
+      'Generic greetings like "Dear Customer" instead of your name.',
+      'Requests for OTPs, PINs, or passwords—legitimate organizations never ask for these.',
+      'Suspicious links that do not match the purported sender’s domain.',
+      'Grammatical errors or unusual formatting in official-looking communications.',
+    ],
+    mitigation: [
+      'Enable Multi-Factor Authentication (MFA) on all critical accounts.',
+      'Verify URLs by hovering over links and checking for HTTPS and correct domain spelling.',
+      'Never share OTPs, PINs, or passwords via phone, SMS, or email.',
+      'Use a password manager to avoid reusing passwords across sites.',
+      'Educate family and colleagues about common phishing lures.',
+      'Install reputable anti-phishing browser extensions and email filters.',
+    ],
+    response: [
+      'Do not click any links or download attachments from suspicious messages.',
+      'Report the phishing attempt to the impersonated organization and your email provider.',
+      'If credentials were entered, immediately change passwords and enable MFA.',
+      'Monitor bank and mobile money statements for unauthorized transactions.',
+      'Report the incident via the platform’s reporting channels.',
+    ],
+    odpcCompliance: 'Phishing that results in unauthorized access to personal data constitutes a data breach under the Data Protection Act, 2019. Organizations must assess risk, notify the ODPC within 72 hours if high risk, and inform affected individuals. Individuals should also report to ODPC if their data is misused.',
+    relatedGuides: ['/stay-safe/email-safety', '/stay-safe/online-payments', '/stay-safe/passwords-mfa'],
+    reportingRoutes: ['/report/recognize', '/report/evidence', '/report/channels'],
   },
-  // ... more threats
+  {
+    title: 'Mobile Money Fraud',
+    slug: 'mobile-money-fraud',
+    category: 'Mobile Money Fraud',
+    severity: 'Critical',
+    summary: 'Fraudulent schemes targeting mobile money platforms (M-Pesa, Airtel Money, T-Kash) through social engineering, fake promotions, agent collusion, and SIM swap attacks.',
+    description: 'Mobile money is the backbone of Kenya’s digital economy, making it a prime target for fraudsters. Common tactics include fake customer care calls claiming issues with your account, requests to dial USSD codes that forward calls or reset PINs, fake M-Pesa messages about erroneous transactions, and collusion with rogue agents. Fraudsters often combine SIM swapping to intercept OTPs and take over accounts, leading to immediate financial loss.',
+    technicalMechanics: [
+      'Social engineering calls impersonating Safaricom, Airtel, or bank staff, creating panic about account suspension.',
+      'Fake promotions or lottery winnings requiring you to send money to "unlock" prizes.',
+      'USSD code manipulation: asking victims to dial *123*...# or forward calls to a fraudster’s number.',
+      'SIM swap attacks: fraudster obtains a replacement SIM by impersonating the victim, then intercepts transaction OTPs.',
+      'Agent collusion: rogue agents register SIM cards with stolen identities or assist in fraudulent withdrawals.',
+      'Reversal scams: claiming a wrong transaction was sent to your number and asking you to reverse it, but actually stealing your funds.',
+    ],
+    indicators: [
+      'Unexpected calls from "customer care" asking for PIN, ID number, or OTP.',
+      'Messages about winning a promotion you never entered.',
+      'Requests to dial unfamiliar USSD codes or forward your calls.',
+      'Sudden loss of mobile network signal (possible SIM swap).',
+      'Unfamiliar transactions on your M-Pesa statement.',
+      'Pressure to act immediately without time to verify.',
+    ],
+    mitigation: [
+      'Never share your M-Pesa PIN, OTP, or national ID details with anyone.',
+      'Set a SIM card lock/PIN with your mobile operator.',
+      'Do not respond to unsolicited calls or messages about promotions or account issues.',
+      'Verify any suspicious communication by calling the official customer care number from the operator’s website.',
+      'Enable M-Pesa app notifications and regularly check your transaction history.',
+      'Avoid using public Wi-Fi for mobile money transactions.',
+    ],
+    response: [
+      'Immediately call your mobile operator’s official fraud hotline to suspend your line if you suspect SIM swap or fraud.',
+      'Report the incident to the nearest police station and obtain an OB number.',
+      'Change your M-Pesa PIN and all associated account passwords.',
+      'Contact your bank if linked accounts were affected.',
+      'Preserve evidence: screenshots, call logs, transaction messages.',
+      'Report to the platform’s incident reporting channels.',
+    ],
+    odpcCompliance: 'Mobile money fraud often involves unauthorized processing of personal data (phone numbers, ID numbers, transaction history). Operators and banks must ensure data protection by design, notify ODPC of breaches, and cooperate with law enforcement.',
+    relatedGuides: ['/cyber-threats/sim-swapping', '/stay-safe/online-payments', '/stay-safe/device-security'],
+    reportingRoutes: ['/report/recognize', '/report/evidence', '/report/channels'],
+  },
+  {
+    title: 'SIM Swapping',
+    slug: 'sim-swapping',
+    category: 'Mobile Money Fraud',
+    severity: 'Critical',
+    summary: 'A form of account takeover where fraudsters convince a mobile operator to transfer a victim’s phone number to a SIM card in their possession, enabling interception of calls and SMS including OTPs.',
+    description: 'SIM swapping is often the final step in a chain of social engineering attacks. The fraudster gathers personal information (full name, ID number, date of birth, sometimes mother’s maiden name) through phishing, social media, or data breaches. They then visit a mobile operator’s shop or call customer care, impersonate the victim, and claim the SIM was lost or damaged. Once the number is transferred, all calls and SMS go to the fraudster, allowing them to reset passwords and intercept OTPs for mobile money, bank accounts, email, and social media.',
+    technicalMechanics: [
+      'Information gathering: phishing emails, fake job applications, or social media scraping to obtain personal identifiers.',
+      'Impersonation: fraudster presents forged ID or uses social engineering to convince a mobile operator agent to issue a replacement SIM.',
+      'Deactivation of original SIM: victim loses network connectivity, often with no immediate explanation.',
+      'Interception of OTPs: fraudster receives all SMS-based two-factor authentication codes.',
+      'Account takeover: resets passwords for email, mobile money, and banking apps using the intercepted OTPs.',
+      'Financial theft: transfers funds, applies for loans, or sells the compromised accounts.',
+    ],
+    indicators: [
+      'Sudden and unexplained loss of mobile network signal (shows "No Service" despite other phones working).',
+      'Notifications from your mobile operator about a SIM replacement you did not request.',
+      'Inability to make or receive calls or SMS.',
+      'Unexpected password reset emails or messages from banks and online services.',
+      'Unauthorized transactions on mobile money or bank accounts.',
+      'Friends or family receive messages from your number that you did not send.',
+    ],
+    mitigation: [
+      'Set a SIM lock/PIN with your mobile operator to prevent unauthorized SIM swaps.',
+      'Avoid sharing personal identification details (ID number, full names, date of birth) on social media.',
+      'Use app-based authenticators (Google Authenticator, Authy) instead of SMS OTP where possible.',
+      'Enable biometric authentication for mobile money and banking apps.',
+      'Regularly check your credit report for unauthorized accounts.',
+      'Be cautious of unsolicited calls requesting personal information.',
+    ],
+    response: [
+      'Immediately contact your mobile operator through official channels to suspend the line and verify your identity.',
+      'Visit a physical operator shop with your original ID to regain control of your number.',
+      'Change passwords for all accounts that use SMS OTP, starting with email and banking.',
+      'Alert your bank and mobile money provider to freeze accounts if fraud is suspected.',
+      'File a report with the police and keep a copy for banks and ODPC.',
+      'Report the incident via the platform’s reporting channels.',
+    ],
+    odpcCompliance: 'SIM swapping exploits weaknesses in identity verification processes, which are governed by the Data Protection Act. Mobile operators must implement robust authentication measures to prevent unauthorized SIM replacements and notify ODPC of any data breach resulting from such fraud.',
+    relatedGuides: ['/cyber-threats/mobile-money-fraud', '/stay-safe/device-security', '/stay-safe/passwords-mfa'],
+    reportingRoutes: ['/report/recognize', '/report/evidence', '/report/channels'],
+  },
+  {
+    title: 'Ransomware',
+    slug: 'ransomware',
+    category: 'Ransomware',
+    severity: 'Critical',
+    summary: 'Malicious software that encrypts files or locks systems, demanding payment (usually cryptocurrency) for restoration. It can cripple businesses, government agencies, and individuals.',
+    description: 'Ransomware attacks are increasingly targeting Kenyan SMEs and institutions due to inadequate backups and cybersecurity awareness. Attackers deliver ransomware through phishing emails with malicious attachments, exploit kits on compromised websites, or brute-forced Remote Desktop Protocol (RDP) credentials. Once executed, the malware encrypts local and network files, then displays a ransom note with payment instructions. Even after payment, recovery is not guaranteed, and victims often face data loss, operational downtime, and reputational damage.',
+    technicalMechanics: [
+      'Delivery vectors: phishing emails with infected Office documents, malicious links, or drive-by downloads.',
+      'Exploitation of unpatched vulnerabilities (e.g., EternalBlue, ProxyLogon) to gain initial access.',
+      'Lateral movement: using stolen credentials or tools like Mimikatz to spread across the network.',
+      'Encryption: uses strong algorithms (AES, RSA) to encrypt files, often targeting backups and shadow copies first.',
+      'Ransom note: displays instructions for payment in Bitcoin or other cryptocurrencies, often with a deadline.',
+      'Double extortion: threat actors exfiltrate sensitive data before encryption and threaten to publish it if ransom is not paid.',
+    ],
+    indicators: [
+      'Files suddenly have unusual extensions (e.g., .locked, .encrypted, .crypt).',
+      'A ransom note appears on the desktop or in folders.',
+      'Systems slow down or become unresponsive due to high CPU/disk usage.',
+      'Unauthorized changes to file permissions or deletion of backups.',
+      'Unusual network traffic to known malicious command-and-control servers.',
+      'Users report inability to open common file types.',
+    ],
+    mitigation: [
+      'Maintain offline, immutable backups of critical data and test restoration regularly.',
+      'Keep operating systems, software, and firmware patched and up to date.',
+      'Use email filtering and disable macros in Office documents from unknown sources.',
+      'Implement least privilege access and segment networks to limit lateral movement.',
+      'Deploy endpoint detection and response (EDR) solutions with anti-ransomware capabilities.',
+      'Conduct regular security awareness training for employees.',
+      'Disable Remote Desktop Protocol (RDP) if not required, or use VPN with MFA.',
+    ],
+    response: [
+      'Isolate infected systems immediately by disconnecting from the network (do not shut down if possible, to preserve evidence).',
+      'Do not pay the ransom—funding criminals does not guarantee file recovery.',
+      'Restore from clean backups after ensuring the malware is removed.',
+      'Engage a professional incident response team if needed.',
+      'Report the incident to the National KE-CIRT/CC and the police.',
+      'If personal data was compromised, notify the ODPC within 72 hours and affected individuals.',
+    ],
+    odpcCompliance: 'Ransomware that results in unauthorized access to personal data is a notifiable data breach under the Data Protection Act. Organizations must document the breach, assess risk to individuals, notify the ODPC without undue delay (within 72 hours if high risk), and communicate with affected data subjects.',
+    relatedGuides: ['/for-smes/backups-ransomware', '/for-smes/cyber-hygiene', '/stay-safe/device-security'],
+    reportingRoutes: ['/report/recognize', '/report/channels'],
+  },
+  {
+    title: 'Data Breaches',
+    slug: 'data-breaches',
+    category: 'Data Breaches',
+    severity: 'Critical',
+    summary: 'Unauthorized access, disclosure, or loss of personal data, affecting individuals and organizations. Breaches can result from hacking, insider threats, human error, or inadequate security measures.',
+    description: 'Data breaches expose sensitive personal information such as names, ID numbers, phone numbers, financial records, health data, and login credentials. In Kenya, the Data Protection Act, 2019 mandates strict data protection principles and breach notification obligations. Breaches can occur through cyberattacks (e.g., SQL injection, phishing), misconfigured cloud storage, lost laptops, or malicious insiders. The consequences include identity theft, financial fraud, reputational damage, and regulatory penalties.',
+    technicalMechanics: [
+      'Hacking: exploiting vulnerabilities in web applications, databases, or network infrastructure.',
+      'Phishing: obtaining employee credentials to access internal systems.',
+      'Insider threats: disgruntled employees or contractors exfiltrating data.',
+      'Misconfigured cloud storage: leaving Amazon S3 buckets or databases publicly accessible.',
+      'Lost or stolen devices: unencrypted laptops, USB drives, or mobile phones containing personal data.',
+      'Third-party breaches: data compromised through a vendor or partner with inadequate security.',
+    ],
+    indicators: [
+      'Unusual account activity or login alerts from services you use.',
+      'Notification from a company that your data may have been exposed.',
+      'Receiving phishing emails referencing specific personal details (indicating a breach).',
+      'Data discovered on the dark web or paste sites.',
+      'Unexplained financial transactions or new accounts opened in your name.',
+      'System logs showing unauthorized access or data exfiltration.',
+    ],
+    mitigation: [
+      'For organizations: implement data minimization, encryption at rest and in transit, and strict access controls.',
+      'Regularly audit and monitor systems for vulnerabilities and suspicious activity.',
+      'Train employees on data protection and incident reporting.',
+      'Use secure configuration for cloud storage and databases (disable public access by default).',
+      'Encrypt all portable devices and enforce strong authentication.',
+      'Have an incident response plan that includes ODPC breach notification procedures.',
+    ],
+    response: [
+      'Contain the breach: disconnect affected systems, revoke compromised credentials, and secure backups.',
+      'Assess the scope: determine what data was accessed, how many individuals are affected, and the risk level.',
+      'Notify the ODPC within 72 hours if the breach is likely to result in high risk to individuals’ rights and freedoms.',
+      'Inform affected individuals without undue delay, providing guidance on protective steps.',
+      'Preserve evidence for forensic analysis and law enforcement.',
+      'Review and update security measures to prevent recurrence.',
+    ],
+    odpcCompliance: 'Under the Data Protection Act, data controllers and processors must report breaches to the ODPC within 72 hours of becoming aware, unless the breach is unlikely to result in risk to individuals. High-risk breaches require direct communication to affected data subjects. Failure to notify can result in fines up to KES 5 million or 1% of annual turnover.',
+    relatedGuides: ['/for-smes/odpc-compliance', '/news/data-breaches', '/stay-safe/social-media-privacy'],
+    reportingRoutes: ['/report/recognize', '/report/evidence', '/report/channels'],
+  },
 ];
